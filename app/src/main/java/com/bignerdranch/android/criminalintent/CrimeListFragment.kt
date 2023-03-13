@@ -5,10 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -56,6 +56,7 @@ class CrimeListFragment : Fragment() {
 
         private val titleTextView = itemView.findViewById<TextView>(R.id.crime_title)
         private val dateTextView = itemView.findViewById<TextView>(R.id.crime_date)
+        private val solvedImageView = itemView.findViewById<ImageView>(R.id.crime_solved)
 
         init {
             itemView.setOnClickListener(this)
@@ -65,6 +66,7 @@ class CrimeListFragment : Fragment() {
             this.crime = crime
             titleTextView.text = this.crime.title
             dateTextView.text = this.crime.date.toString()
+            solvedImageView.visibility = if (crime.isSolved) View.VISIBLE else View.GONE
         }
 
         override fun onClick(p0: View?) {
